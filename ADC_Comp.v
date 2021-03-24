@@ -8,7 +8,8 @@ module ADC_Comp (
     output reg ADC_comp
 );
     reg [11:0] ADC_reg = 0;
-    reg [8:0] counter = 9'h190;
+    reg [8:0] counter = 9'hC8;
+    reg [8:0] counter_default = 9'hC8;
     reg measure_ADC = 0;
 
     always @(posedge clk) begin
@@ -21,11 +22,11 @@ module ADC_Comp (
         end
         
         if(~nrst || ~swiptAlive)begin
-            counter <= 9'h190;
+            counter <= counter_default;
             measure_ADC <= 0;
         end
         else if(counter == 0)begin
-            counter <= 9'h190;
+            counter <= counter_default;
             measure_ADC <= 1;
             if (ADC_reg > 12'h7FF) begin
                 ADC_comp <= 0;
