@@ -57,6 +57,11 @@ module toplevel ();
 	always @(posedge nrst) begin
 		load_freq <= 1'b0;
 	end
+	always @(posedge clk) begin
+		if(nrst && swiptAlive)begin
+			freq <= phase;
+		end
+	end
 
 //------END PARAM & VAR------//	
 	
