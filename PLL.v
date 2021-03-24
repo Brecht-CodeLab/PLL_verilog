@@ -33,18 +33,10 @@ module PLL #(
         freq_step = INITIAL_PHASE_STEP;
     end
 
-    if(nrst || swiptAlive)begin
-        if((ADC_comp) && (ctr[MSB]))begin
-            agreed_output <= 1'b1;
-        end
-        else if ((!ADC_comp) && (!ctr[MSB]))begin
-            agreed_output <= 1'b0;
-        end
-    end
 
     always @(posedge clk) begin
         phase_correction <= {1'b1, {(MSB){1'b0}}} >> lgcoefficient;
-        freq_correction <= { 3'b001, {(MSB-2){1'b0}} } >> (2*lgcoefficient);
+        freq_correction <= {3'b001, {(MSB-2){1'b0}}} >> (2*lgcoefficient);
 
         if(nrst && swiptAlive)begin
             error <= (!phase_error) ? 2'b00 : ((lead) ? 2'b11 : 2'b01);
@@ -56,6 +48,13 @@ module PLL #(
             end
             else begin
                 ctr <= ctr + freq_step + phase_correction;
+            end
+
+            if((ADC_comp) && (ctr[MSB]))begin
+                agreed_output <= 1'b1;
+            end
+            else if((!ADC_comp) && (!ctr[MSB]))begin
+                agreed_output <= 1'b0;
             end
         end
 
