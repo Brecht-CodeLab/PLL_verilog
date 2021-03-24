@@ -28,5 +28,8 @@ module ADC_Comp (
                 ADC_comp <= 1;
             end
         end
+        else begin
+            counter <= counter - 1;
+        end
     end
 endmodule
