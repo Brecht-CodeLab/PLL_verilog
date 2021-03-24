@@ -1,6 +1,9 @@
 `timescale 1ns/1ps
 
-module ADC_Comp (
+module ADC_Comp #(
+    parameter [0:0] REAL_ADC = 1'b0;
+    )
+    (
     input wire clk,
     input wire nrst,
     input wire swiptAlive,
@@ -21,23 +24,36 @@ module ADC_Comp (
             ADC_reg <= ADC;
         end
         
-        if(~nrst || ~swiptAlive)begin
-            counter <= counter_default;
-            measure_ADC <= 0;
-        end
-        else if(counter == 0)begin
-            counter <= counter_default;
-            measure_ADC <= 1;
-            if (ADC_reg > 12'h7FF) begin
-                ADC_comp <= 0;
+        if (REAL_ADC)begin
+           if(~nrst || ~swiptAlive)begin
+                counter <= counter_default;
+                measure_ADC <= 0;
             end
-            else if (ADC_reg < 12'h800) begin
-                ADC_comp <= 1;
+            else if(counter == 0)begin
+                counter <= counter_default;
+                measure_ADC <= 1;
+                if (ADC_reg > 12'h7FF) begin
+                    ADC_comp <= 0;
+                end
+                else if (ADC_reg < 12'h800) begin
+                    ADC_comp <= 1;
+                end
+            end
+            else begin
+                counter <= counter - 1;
+                measure_ADC <= 0;
             end
         end
         else begin
-            counter <= counter - 1;
-            measure_ADC <= 0;
+            if (~nrst || ~swiptAlive) begin
+                ADC_comp <= 0;
+            end
+            else if (ADC > 12'h7FF) begin
+                ADC_comp <= 0;
+            end
+            else if (ADC < 12'h800) begin
+                ADC_comp <= 1;
+            end
         end
     end
 endmodule
