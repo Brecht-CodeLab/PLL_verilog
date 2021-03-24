@@ -4,7 +4,7 @@ module SwiptOut (
 	input wire clk,
 	input wire nrst,
 	input wire swiptAlive,
-	input [19:0] freq,
+	input [31:0] freq,
 	input [11:0] l,
 	output wire SWIPT_OUT0,
 	output wire SWIPT_OUT1,

@@ -44,12 +44,19 @@ module toplevel ();
 	wire ADC11;
 
 	///Frequency Default
-	reg [19:0] freq = 20'h9C40; //Default freq is 38 100 Hz
+	reg [31:0] freq = 20'h9C40; //Default freq is 38 100 Hz
+	reg load_freq = 1'b1;
+	reg [4:0] lgcoefficient = 5'b10000;
+	wire [1:0] error;
+	wire [31:0] phase;
 	///Duty Default
  	reg [11:0] l = 12'h0FA;
 	///ADC
 	wire ADC_comp;
 
+	always @(posedge nrst) begin
+		load_freq <= 1'b0;
+	end
 
 //------END PARAM & VAR------//	
 	
@@ -99,6 +106,18 @@ module toplevel ();
 			.swiptAlive (swiptAlive),
 			.ADC (ADC_in),
 			.ADC_comp (ADC_comp)
+			);
+
+	PLL inst_pll (
+			.clk (clk),
+			.nrst (nrst),
+			.swiptAlive (swiptAlive),
+			.ADC_comp (ADC_comp),
+			.load_freq (load_freq),
+			.freq (freq),
+			.lgcoefficient (lgcoefficient),
+			.phase (phase_out),
+			.error (error)
 			);
 //------END MODULES------//
 
