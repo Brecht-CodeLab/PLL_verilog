@@ -54,7 +54,7 @@ module toplevel ();
 	///ADC
 	wire ADC_comp;
 
-	always @(posedge nrst) begin
+	always @(posedge swiptAlive) begin
 		load_freq <= 1'b0;
 	end
 	always @(posedge clk) begin
