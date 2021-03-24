@@ -1,4 +1,4 @@
-´timescale 1ns/1ps
+`timescale 1ns/1ps
 
 module ADC_Comp #(
     
@@ -6,7 +6,7 @@ module ADC_Comp #(
     input wire clk,
     input wire nrst,
     input wire swiptAlive,
-    input [11:0] wire ADC,
+    input wire [11:0] ADC,
     output reg ADC_comp
 );
     always @(posedge clk) begin
