@@ -9,14 +9,8 @@
 -AMSINPUT
 ./SwiptOut.v
 ./Heartbeat.v
-./Counter.v
-./Freq.v
 ./Testbench.v
-./Optimization.v
-./CalcL.v
-./DutyAdjust.v
-./GetMeanCurrent.v
-./Data.v
+./ADC_Comp.v
 -CDSLIB
 ./xcelium.d/run.lnx8664.19.03.d/cdsrun.lib
 -HDLVAR

@@ -13,7 +13,7 @@
 // More information can be found at ...
 
 
-include "../../../Global_T2_verilog_v8/ANALOG_NETWORK.spi" // analog subcircuit definitions
+include "../../Global_T2_verilog_v8/ANALOG_NETWORK.spi" // analog subcircuit definitions
 
 // If device models are used in the subcircuit, these have to be included as well of course.
 //include "/users/micas/ruytterh/Documents/Research/Coolflux/Analog/toplevel.scs" section=top_tt

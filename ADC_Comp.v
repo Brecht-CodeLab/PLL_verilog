@@ -1,8 +1,6 @@
 `timescale 1ns/1ps
 
-module ADC_Comp #(
-    
-) (
+module ADC_Comp (
     input wire clk,
     input wire nrst,
     input wire swiptAlive,

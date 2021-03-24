@@ -532,3 +532,6 @@ s531(15Mar2021:09:49:41):  xrun ./amsSim.scs -spectre_args "+ms ++aps=liberal" -
 s532(15Mar2021:10:10:09):  xrun ./amsSim.scs -spectre_args "+ms ++aps=liberal" -f verilogFiles.f -access +rwc -64bit -gui -s 
 s533(15Mar2021:10:18:17):  xrun ./amsSim.scs -spectre_args "+ms ++aps=liberal" -f verilogFiles.f -access +rwc -64bit -gui -s 
 s534(15Mar2021:21:52:16):  xrun ./amsSim.scs -spectre_args "+ms ++aps=liberal" -f verilogFiles.f -access +rwc -64bit -gui -s 
+s535(24Mar2021:14:48:31):  xrun ./amsSim.scs -spectre_args "+ms ++aps=liberal" -f verilogFiles.f -access +rwc -64bit -gui 
+s536(24Mar2021:14:50:53):  xrun ./amsSim.scs -spectre_args "+ms ++aps=liberal" -f verilogFiles.f -access +rwc -64bit -gui 
+s537(24Mar2021:14:52:12):  xrun ./amsSim.scs -spectre_args "+ms ++aps=liberal" -f verilogFiles.f -access +rwc -64bit -gui 

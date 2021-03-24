@@ -1,4 +1,4 @@
-1615679214 /users/students/r0763954/Documents/EAGLE2/Simvision/EAGLE2_verilog_v8/amsSim.scs
+1616593894 /users/students/r0763954/Documents/EAGLE2/Simvision/EAGLE2_verilog_T4/PLL_verilog/amsSim.scs
 1613398594 /users/students/r0763954/Documents/EAGLE2/Simvision/Global_T2_verilog_v8/ANALOG_NETWORK.spi
 1606909796 /users/students/r0763954/Documents/EAGLE2/Simvision/Global_T2_verilog_v8/DI_10A01.spi
 1606909796 /users/students/r0763954/Documents/EAGLE2/Simvision/Global_T2_verilog_v8/LM7812.spi
