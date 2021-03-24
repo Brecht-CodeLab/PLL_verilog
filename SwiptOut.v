@@ -12,7 +12,7 @@ module SwiptOut (
 	);
 
 	//Parameters that are needed to run the program
-	reg [27:0] clk_f = 28'h2FAF080;
+	reg [27:0] clk_f = 28'h5F5_E100;
 	reg checkStart = 1'b0;
 	reg [3:0] deadTimeL = 4'hE;
 	reg [3:0] dead_counter = 4'hE;
@@ -39,40 +39,30 @@ module SwiptOut (
     always @(posedge clk)begin
         if(~nrst)begin
             //Reset
-			pulse_length <= clk_f/freq*l/1000;
-			pulse_counter <= clk_f/freq*l/1000;
+			pulse_length <= (clk_f/freq)*(l/1000);
+			pulse_counter <= (clk_f/freq)*(l/1000);
 			counter_half <= clk_f/freq/2;
 			counter_full <= clk_f/freq;
 			checkStart <= 0;
 			dead <= 1;
 			
-
             s0 <= 0;
             s1 <= 0;
             s2 <= 1;
             s3 <= 1; 
         end
-
         else begin
             if(pulse_counter == 0 && counter_half == 0)begin
                 //Half the duty cycle is done --> inverse
-                if(counter_full == 0 || counter_full == 1)begin
+                if(counter_full < 2)begin
                 	s0 <= 1;
                 	s1 <= 0;
                 	s2 <= 0;
                 	s3 <= 1;
                 	counter_full <= clk_f/freq - 1;
 					counter_half <= clk_f/freq/2 - 1;
-					//pulse_length <= clk_f/freq*l/1000;
-					//pulse_counter <= clk_f/freq*l/1000 - 1;
-					if(l==12'h0)begin
-						pulse_length <= clk_f/freq/50;
-						pulse_counter <= clk_f/freq/50 - 1;
-					end
-					else begin
-						pulse_length <= clk_f/freq*l/1000;
-						pulse_counter <= clk_f/freq*l/1000 - 1;
-					end
+					pulse_length <= clk_f/freq*l/1000;
+					pulse_counter <= clk_f/freq*l/1000 - 1;
                 end
                 else begin
                 	s0 <= 0;
@@ -89,11 +79,9 @@ module SwiptOut (
                 s1 <= 0;
                 s2 <= 1;
                 s3 <= 1;
-
                 counter_half <= counter_half - 1;
                 counter_full <= counter_full - 1;
 				dead <= 0;
-
             end
             else begin
 				checkStart <= 1'b1;
@@ -102,12 +90,6 @@ module SwiptOut (
           			s1 <= 0;
 		            s2 <= 0;
 		            s3 <= 1;
-				end
-				else begin
-					s0 <= s0;
-		            s1 <= s1;
-		            s2 <= s2;
-		            s3 <= s3;
 				end
                 counter_half <= counter_half - 1;
                 counter_full <= counter_full - 1;
