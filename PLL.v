@@ -34,10 +34,12 @@ module PLL #(
     end
 
     if(nrst || swiptAlive)begin
-        if((ADC_comp) && (ctr[MSB]))
+        if((ADC_comp) && (ctr[MSB]))begin
             agreed_output <= 1'b1;
-        else if ((!ADC_comp) && (!ctr[MSB]))
+        end
+        else if ((!ADC_comp) && (!ctr[MSB]))begin
             agreed_output <= 1'b0;
+        end
     end
 
     always @(posedge clk) begin
@@ -46,30 +48,37 @@ module PLL #(
 
         if(nrst && swiptAlive)begin
             error <= (!phase_error) ? 2'b00 : ((lead) ? 2'b11 : 2'b01);
-            if(!phase_error)
+            if(!phase_error)begin
                 ctr <= ctr + freq_step;
-            else if (lead)
+            end
+            else if (lead)begin
                 ctr <= ctr + freq_step - phase_correction;
-            else
+            end
+            else begin
                 ctr <= ctr + freq_step + phase_correction;
+            end
         end
 
         if(load_freq)begin
             freq_step <= {1'b0, freq};
         end
-        else if ((nrst) && (swiptAlive) && (OPT_TRACK_FREQUENCY) && (phase_error))begin
-            if (lead)
+        else if((nrst) && (swiptAlive) && (OPT_TRACK_FREQUENCY) && (phase_error))begin
+            if(lead)begin
                 freq_step <= freq_step - freq_correction;
-            else
+            end
+            else begin
                 freq_step <= freq_step + freq_correction;
+            end
         end
     end
 
     always @(*) begin
-        if(agreed_output)
+        if(agreed_output)begin
             lead = (!ctr[MSB]) && (ADC_comp);
-        else
+        end
+        else begin
             lead = (ctr[MSB]) && (!ADC_comp);
+        end
     end
 
     assign phase_error = (ctr[MSB] != ADC_comp);
