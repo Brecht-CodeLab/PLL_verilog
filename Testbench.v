@@ -121,7 +121,7 @@ module toplevel ();
 			.load_freq (load_freq),
 			.freq (freq),
 			.lgcoefficient (lgcoefficient),
-			.phase (phase_out),
+			.phase (phase),
 			.error (error)
 			);
 //------END MODULES------//
