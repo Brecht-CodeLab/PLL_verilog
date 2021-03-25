@@ -58,7 +58,7 @@ module toplevel ();
 		load_freq <= 1'b0;
 	end
 	always @(posedge clk) begin
-		if(nrst && swiptAlive)begin
+		if(nrst && swiptAlive && ~load_freq)begin
 			freq <= phase;
 		end
 	end

@@ -18,9 +18,8 @@ module ADC_Comp #(
     always @(posedge clk) begin
         if(~nrst || ~swiptAlive)begin
             ADC_reg <= 0;
-            ADC_comp <= 0;
         end
-        if(ADC >= 0)begin
+        else if(ADC >= 0)begin
             ADC_reg <= ADC;
         end
         
@@ -28,6 +27,7 @@ module ADC_Comp #(
            if(~nrst || ~swiptAlive)begin
                 counter <= counter_default;
                 measure_ADC <= 0;
+                ADC_comp <= 0;
             end
             else if(counter == 0)begin
                 counter <= counter_default;
