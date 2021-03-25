@@ -44,8 +44,9 @@ module toplevel ();
 	wire ADC11;
 
 	///Frequency Default
-	reg [31:0] freq = 20'h9C40; //Default freq is 40kHz
+	reg [31:0] freq = 32'h9C40; //Default freq is 40kHz
 	reg load_freq = 1'b1;
+	reg [31:0] freq_step = 32'h32;
 	reg [4:0] lgcoefficient = 5'b01101;
 	wire [1:0] error;
 	wire [31:0] phase;
@@ -101,7 +102,7 @@ module toplevel ();
 			.clk (clk),
 			.nrst (nrst),
 			.swiptAlive (swiptAlive),
-			.freq (freq),
+			.freq (freq_step),
 			.l (l),
 			.SWIPT_OUT0 (SWIPT_OUT0),
 			.SWIPT_OUT1 (SWIPT_OUT1),
