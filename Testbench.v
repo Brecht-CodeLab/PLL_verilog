@@ -102,7 +102,7 @@ module toplevel ();
 			.clk (clk),
 			.nrst (nrst),
 			.swiptAlive (swiptAlive),
-			.freq (freq_step),
+			.freq (freq),
 			.l (l),
 			.SWIPT_OUT0 (SWIPT_OUT0),
 			.SWIPT_OUT1 (SWIPT_OUT1),
@@ -124,7 +124,7 @@ module toplevel ();
 			.swiptAlive (swiptAlive),
 			.pll_in (pll_in),
 			.load_freq (load_freq),
-			.freq (freq),
+			.freq (freq_step),
 			.lgcoefficient (lgcoefficient),
 			.phase (phase),
 			.error (error)
