@@ -46,8 +46,8 @@ module toplevel ();
 	///Frequency Default
 	reg [31:0] freq = 32'h9C40; //Default freq is 40kHz
 	reg load_freq = 1'b1;
-	reg [31:0] freq_step = 32'h32;
-	reg [4:0] lgcoefficient = 5'b01101;
+	reg [31:0] freq_step = 32'h1F4;
+	reg [4:0] lgcoefficient = 5'b00111;
 	wire [1:0] error;
 	wire [31:0] phase;
 	///Duty Default
