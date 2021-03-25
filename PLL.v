@@ -11,7 +11,7 @@ module PLL #(
     input wire nrst,
     input wire swiptAlive,
 
-    input wire ADC_comp,
+    input wire pll_in,
     
     input wire load_freq,
     input wire [(MSB-1):0] freq,
@@ -50,10 +50,10 @@ module PLL #(
                 ctr <= ctr + freq_step + phase_correction;
             end
 
-            if((ADC_comp) && (ctr[MSB]))begin
+            if((pll_in) && (ctr[MSB]))begin
                 agreed_output <= 1'b1;
             end
-            else if((!ADC_comp) && (!ctr[MSB]))begin
+            else if((!pll_in) && (!ctr[MSB]))begin
                 agreed_output <= 1'b0;
             end
         end
@@ -73,14 +73,14 @@ module PLL #(
 
     always @(*) begin
         if(agreed_output)begin
-            lead = (!ctr[MSB]) && (ADC_comp);
+            lead = (!ctr[MSB]) && (pll_in);
         end
         else begin
-            lead = (ctr[MSB]) && (!ADC_comp);
+            lead = (ctr[MSB]) && (!pll_in);
         end
     end
 
-    assign phase_error = (ctr[MSB] != ADC_comp);
+    assign phase_error = (ctr[MSB] != pll_in);
     assign phase = ctr;
 
 endmodule
