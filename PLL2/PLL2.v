@@ -10,6 +10,7 @@ module PLL2 (
     wire up, dn, upb, dnb, vco;
     reg counter_rst, prev_counter_rst;
     wire [1:0] setting;
+    reg [31:0] period;
     reg [31:0] phase_error, pulse_length;
     reg [31:0] f0 = 32'h9C40; //40kHz
     reg [31:0] delf = 32'h1388;
