@@ -19,6 +19,9 @@ module PLL2 (
         f = f0;
         counter_rst = 0;
         prev_counter_rst = 0;
+        phase_error = 0;
+        period = 0;
+        pulse_length = 0;
     end
 
     always @(posedge setting[0])begin
