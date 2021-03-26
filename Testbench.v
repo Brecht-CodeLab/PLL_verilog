@@ -45,6 +45,7 @@ module toplevel ();
 
 	///Frequency Default
 	reg [31:0] freq = 32'h9C40; //Default freq is 40kHz
+	wire [31:0] f;
 	reg load_freq = 1'b1;
 	reg [31:0] freq_step = 32'h1F4;
 	reg [4:0] lgcoefficient = 5'b00111;
@@ -118,17 +119,25 @@ module toplevel ();
 			.ADC_comp (ADC_comp)
 			);
 
-	PLL inst_pll (
+	// PLL inst_pll (
+	// 		.clk (clk),
+	// 		.nrst (nrst),
+	// 		.swiptAlive (swiptAlive),
+	// 		.pll_in (pll_in),
+	// 		.load_freq (load_freq),
+	// 		.freq (freq_step),
+	// 		.lgcoefficient (lgcoefficient),
+	// 		.phase (phase),
+	// 		.error (error)
+	// 		);
+
+	PLL2 inst_pll2 (
 			.clk (clk),
 			.nrst (nrst),
 			.swiptAlive (swiptAlive),
-			.pll_in (pll_in),
-			.load_freq (load_freq),
-			.freq (freq_step),
-			.lgcoefficient (lgcoefficient),
-			.phase (phase),
-			.error (error)
-			);
+			.link (ADC_comp),
+			.f (f)
+	);
 //------END MODULES------//
 
 //------BEGIN ASSIGNMENT------//
