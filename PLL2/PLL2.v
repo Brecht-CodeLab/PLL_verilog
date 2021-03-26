@@ -7,8 +7,8 @@ module PLL2 (
     input wire link,
     output reg [31:0] f
 );
-    wire up, dn, upb, dnb, vco;
-    reg counter_rst, prev_counter_rst;
+    wire up, dn, upb, dnb;
+    reg counter_rst, prev_counter_rst, vco;
     wire [1:0] setting;
     reg [31:0] period;
     reg [31:0] phase_error, pulse_length;
