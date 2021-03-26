@@ -22,6 +22,7 @@ module PLL2 (
         phase_error = 0;
         period = 0;
         pulse_length = 0;
+        clk_go = 0;
     end
 
     always @(posedge setting[0])begin
