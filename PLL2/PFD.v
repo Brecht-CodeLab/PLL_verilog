@@ -12,6 +12,11 @@ module PFD (
     wire fv_rst, reset;
     reg q0, q1;
 
+    initial begin
+        q0 = 0;
+        q1 = 0;
+    end
+
     always @(posedge vco or posedge fv_rst)begin
         q0 <= (fv_rst) ? 0 : 1;
     end

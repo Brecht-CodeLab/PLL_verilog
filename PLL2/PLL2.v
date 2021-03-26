@@ -15,7 +15,7 @@ module PLL2 (
     reg [31:0] f0 = 32'h9C40; //40kHz
     reg [31:0] delf = 32'h1388;
     initial begin
-        vco =  0;
+        vco =  ;
         f = f0;
         counter_rst = 0;
         prev_counter_rst = 0;
