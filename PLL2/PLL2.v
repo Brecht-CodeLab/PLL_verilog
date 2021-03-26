@@ -43,7 +43,10 @@ module PLL2 (
     end
 
     always @(posedge clk)begin
-        if(prev_counter_rst == counter_rst)begin
+        if(~nrst || ~swiptAlive)begin
+          
+        end
+        else if(prev_counter_rst == counter_rst)begin
             pulse_length <= pulse_length + 1;
         end
         else begin
