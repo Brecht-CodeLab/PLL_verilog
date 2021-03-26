@@ -8,7 +8,7 @@ module PLL2 (
     output reg [31:0] f
 );
     wire up, dn, upb, dnb;
-    reg counter_rst, prev_counter_rst, vco;
+    reg counter_rst, prev_counter_rst, vco, clk_go;
     wire [1:0] setting;
     reg [31:0] period;
     reg [31:0] phase_error, pulse_length;
@@ -25,6 +25,7 @@ module PLL2 (
     end
 
     always @(posedge setting[0])begin
+        clk_go <= 1;
         counter_rst <= ~counter_rst;
         if(nrst && swiptAlive && setting[1])begin
             f <= f0 - delf * phase_error/pulse_length;
@@ -43,8 +44,8 @@ module PLL2 (
     end
 
     always @(posedge clk)begin
-        if(~nrst || ~swiptAlive)begin
-          
+        if(~nrst || ~swiptAlive || ~clk_go)begin
+            pulse_length <= 0;
         end
         else if(prev_counter_rst == counter_rst)begin
             pulse_length <= pulse_length + 1;

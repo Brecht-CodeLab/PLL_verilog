@@ -26,8 +26,8 @@ module PFD (
 
     assign up = q1;
     assign dn = q0;
-    assign setting[0] = dn | up;
-    assign setting[1] = dn;
+    assign setting[0] = q1 | q0;
+    assign setting[1] = q0;
     assign upb = ~q0;
     assign dnb = ~q1;
     assign fv_rst = reset | (q0 & q1);
