@@ -10,7 +10,7 @@ module PLL2 (
     wire up, dn, upb, dnb;
     reg counter_rst, prev_counter_rst, vco, clk_go;
     wire [1:0] setting;
-    reg [31:0] period;
+    reg [31:0] period, half_period;
     reg [31:0] phase_error, pulse_length;
     reg [31:0] f0 = 32'h9C40; //40kHz
     reg [31:0] delf = 32'h1388;
@@ -52,7 +52,7 @@ module PLL2 (
             vco <= 0;
         end
 
-        
+
         if(~nrst || ~swiptAlive || ~clk_go)begin
             pulse_length <= 0;
         end
