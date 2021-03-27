@@ -35,9 +35,8 @@ module PLL2 (
         else if(nrst && swiptAlive && ~setting[1])begin
             f <= f0 + delf * phase_error/pulse_length;
             period <= 1000000000/(f0 + (delf*phase_error/pulse_length));
+            half_period <= 500000000/(f0 + (delf*phase_error/pulse_length));
         end
-        vco <= 1;
-        #(period/2) vco <= ~vco;
     end
 
     always @(negedge setting[0]) begin
@@ -45,6 +44,15 @@ module PLL2 (
     end
 
     always @(posedge clk)begin
+        if(half_period > 0)begin
+            vco <= 1;
+            half_period <= half_period - 1;
+        end
+        else begin
+            vco <= 0;
+        end
+
+        
         if(~nrst || ~swiptAlive || ~clk_go)begin
             pulse_length <= 0;
         end

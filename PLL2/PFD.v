@@ -9,7 +9,7 @@ module PFD (
     output wire upb,
     output wire dnb
 );
-    wire fv_rst, reset;
+    wire fv_rst, fr_rst, reset;
     reg q0, q1;
 
     initial begin
@@ -20,8 +20,8 @@ module PFD (
     always @(posedge vco or posedge fv_rst)begin
         q0 <= (fv_rst) ? 0 : 1;
     end
-    always @(posedge link or posedge fv_rst) begin
-        q1 <= (fv_rst) ? 0 : 1;
+    always @(posedge link or posedge fr_rst) begin
+        q1 <= (fr_rst) ? 0 : 1;
     end
 
     assign up = q1;
@@ -31,5 +31,6 @@ module PFD (
     assign upb = ~q0;
     assign dnb = ~q1;
     assign fv_rst = reset | (q0 & q1);
+    assign fr_rst = reset | (q0 & q1);
     assign reset = vco & link;
 endmodule
