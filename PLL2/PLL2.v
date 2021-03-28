@@ -46,7 +46,7 @@ module PLL2 (
     end
 
     always @(posedge clk)begin
-        if (freq_rdy) begin
+        if (freq_rdy && nrst && swiptAlive) begin
             if(cnt == 0)begin
                 vco <= ~vco;
                 cnt <= 100000000/f0;
