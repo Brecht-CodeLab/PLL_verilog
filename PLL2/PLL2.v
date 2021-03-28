@@ -4,13 +4,14 @@ module PLL2 (
     input wire clk,
     input wire nrst,
     input wire swiptAlive,
+    input wire freq_rdy,
     input wire link,
     output reg [31:0] f
 );
     wire up, dn, upb, dnb;
     reg counter_rst, prev_counter_rst, vco, clk_go;
     wire [1:0] setting;
-    reg [31:0] period, half_period;
+    reg [31:0] period, half_period, cnt;
     reg [31:0] phase_error, pulse_length;
     reg [31:0] f0 = 32'h9C40; //40kHz
     reg [31:0] delf = 32'h1388;
@@ -44,7 +45,16 @@ module PLL2 (
     end
 
     always @(posedge clk)begin
-        if(half_period > 0)begin
+        if (freq_rdy) begin
+            if(cnt == 0)begin
+                vco <= ~vco;
+                cnt <= 100000000/f0;
+            end
+            else begin
+                cnt <= cnt - 1;
+            end
+        end
+        else if(half_period > 0)begin
             vco <= 1;
             half_period <= half_period - 1;
         end
