@@ -22,6 +22,7 @@ module PLL2 (
         prev_counter_rst = 0;
         phase_error = 0;
         period = 0;
+        half_period = 0;
         pulse_length = 0;
         clk_go = 0;
         cnt <= 32'hB00;
