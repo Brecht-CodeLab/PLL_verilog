@@ -58,7 +58,7 @@ module toplevel ();
 	reg pll_in = 0;
 
 	always @(posedge swiptAlive) begin
-		#10000000 load_freq <= 1'b0;
+		#1000000000 load_freq <= 1'b0;
 	end
 	always @(posedge clk) begin
 		if(nrst && swiptAlive && ~load_freq)begin
