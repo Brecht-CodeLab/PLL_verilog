@@ -37,7 +37,7 @@ module PLL2 (
         else if(nrst && swiptAlive && ~setting[1])begin
             f <= f0 + delf * phase_error/pulse_length;
             period <= 1000000000/(f0 + (delf*phase_error/pulse_length));
-            half_period <= 500000000/(f0 + (delf*phase_error/pulse_length));
+            //half_period <= 500000000/(f0 + (delf*phase_error/pulse_length));
         end
     end
 
@@ -55,12 +55,12 @@ module PLL2 (
                 cnt <= cnt - 1;
             end
         end
-        else if(half_period > 0)begin
-            vco <= 1;
-            half_period <= half_period - 1;
+        else if(half_period == 0)begin
+            vco <= ~vco;
+            half_period <= period/2;
         end
         else begin
-            vco <= 0;
+            half_period <= half_period - 1;
         end
 
 
