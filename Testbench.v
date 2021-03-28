@@ -52,7 +52,7 @@ module toplevel ();
 	wire [1:0] error;
 	wire [31:0] phase;
 	///Duty Default
- 	reg [11:0] l = 12'h0FA;
+ 	reg [11:0] l = 12'h15E;
 	///ADC
 	wire ADC_comp;
 	reg pll_in = 0;
