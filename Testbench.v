@@ -44,7 +44,7 @@ module toplevel ();
 	wire ADC11;
 
 	///Frequency Default
-	reg [31:0] freq = 32'h9470; //Default freq is 40kHz
+	reg [31:0] freq = 32'hA410; //Default freq is 40kHz
 	wire [31:0] f;
 	reg load_freq = 1'b1;
 	reg [31:0] freq_step = 32'h1F4;

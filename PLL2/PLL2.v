@@ -25,7 +25,7 @@ module PLL2 (
         half_period = 0;
         pulse_length = 0;
         clk_go = 0;
-        cnt <= 32'h700;
+        cnt <= 32'hA00;
     end
 
     always @(posedge setting[0])begin
