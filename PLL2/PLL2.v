@@ -13,7 +13,7 @@ module PLL2 (
     wire [1:0] setting;
     reg [31:0] period, half_period, cnt;
     reg [31:0] phase_error, pulse_length;
-    reg [31:0] f0 = 32'h9C40; //40kHz
+    reg [31:0] f0 = 32'hA410; //41kHz
     reg [31:0] delf = 32'h1388;
     initial begin
         vco =  0;
@@ -24,7 +24,7 @@ module PLL2 (
         period = 0;
         pulse_length = 0;
         clk_go = 0;
-        cnt <= 32'hA00;
+        cnt <= 32'hB00;
     end
 
     always @(posedge setting[0])begin
