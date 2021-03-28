@@ -61,11 +61,8 @@ module toplevel ();
 		#1000000000 load_freq <= 1'b0;
 	end
 	always @(posedge clk) begin
-		if(nrst && swiptAlive && ~load_freq)begin
-			pll_in <= error[0];
-		end
-		else begin
-			pll_in <= ADC_comp;
+		if(~load_freq)begin
+			freq <= f;
 		end
 	end
 
