@@ -135,7 +135,7 @@ module toplevel ();
 			.clk (clk),
 			.nrst (nrst),
 			.swiptAlive (swiptAlive),
-			.freq_ready (load_freq),
+			.freq_rdy (load_freq),
 			.link (ADC_comp),
 			.f (f)
 	);
