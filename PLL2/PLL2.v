@@ -33,11 +33,11 @@ module PLL2 (
         clk_go <= 1;
         counter_rst <= ~counter_rst;
         if(nrst && swiptAlive && setting[1])begin
-            f <= f0 - delf * phase_error/pulse_length;
+            f <= f0 + delf * phase_error/pulse_length;
             period <= 100000000/(f0 - (delf*phase_error/pulse_length));
         end
         else if(nrst && swiptAlive && ~setting[1])begin
-            f <= f0 + delf * phase_error/pulse_length;
+            f <= f0 - delf * phase_error/pulse_length;
             period <= 100000000/(f0 + (delf*phase_error/pulse_length));
             //half_period <= 500000000/(f0 + (delf*phase_error/pulse_length));
         end
