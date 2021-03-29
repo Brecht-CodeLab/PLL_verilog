@@ -14,7 +14,7 @@ module PLL2 (
     reg [31:0] period, half_period, cnt;
     reg [31:0] phase_error, pulse_length;
     reg [31:0] f0 = 32'h9C40; //41kHz
-    reg [31:0] delf = 32'h9C40; //15kHz
+    reg [31:0] delf = 32'h2710; //10kHz
     initial begin
         vco =  0;
         f = f0;
