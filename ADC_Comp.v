@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
 module ADC_Comp #(
-    parameter [0:0] REAL_ADC = 1'b0
+    parameter [0:0] REAL_ADC = 1'b1
     )
     (
     input wire clk,
